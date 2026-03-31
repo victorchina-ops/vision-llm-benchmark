@@ -25,9 +25,11 @@ import numpy as np
 # ── Config ────────────────────────────────────────────────────────────────────
 
 RUNS = {
-    "exp1":         Path("runs/2026-03-31_10-52-52"),
-    "exp2":         Path("runs/2026-03-31_14-46-36"),
-    "claude-haiku": Path("runs/claude_haiku"),
+    "exp1":          Path("runs/2026-03-31_10-52-52"),
+    "exp2":          Path("runs/2026-03-31_14-46-36"),
+    "claude-haiku":  Path("runs/claude_haiku"),
+    "claude-sonnet": Path("runs/claude_sonnet"),
+    "claude-opus":   Path("runs/claude_opus"),
 }
 GT_PATH = Path("ground_truth.csv")
 OUT_DIR = Path(".")
@@ -43,9 +45,11 @@ WEIGHTS = {
 
 # colour per run — exp1 blue, exp2 orange, claude-haiku purple
 RUN_COLORS = {
-    "exp1":         "#5c85d6",
-    "exp2":         "#e07b39",
-    "claude-haiku": "#9c27b0",
+    "exp1":          "#5c85d6",
+    "exp2":          "#e07b39",
+    "claude-haiku":  "#9c27b0",
+    "claude-sonnet": "#e91e8c",
+    "claude-opus":   "#c0392b",
 }
 
 METRIC_DISPLAY = [
