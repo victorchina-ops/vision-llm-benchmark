@@ -1,0 +1,28 @@
+# Model weights — too large for git (stored in models/ollama/)
+models/
+
+# Sample images — add your own to images/
+images/
+
+# Run outputs — generated, not source
+runs/
+old results/
+
+# Loose result files from early runs (before runs/ folder was added)
+results.csv
+results_raw.csv
+benchmark.csv
+results_*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Claude Code internal
+.claude/
+
+# Ollama logs
+/tmp/ollama*.log
