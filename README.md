@@ -1,12 +1,32 @@
-# Multimodal LLM Image Analysis Benchmark
+# vision-llm-benchmark
 
-Automated benchmark that runs vision LLMs via [Ollama](https://ollama.com) on a set of images, detecting people (gender/age), backpacks, and bicycles. Results are saved per-run in timestamped folders with CSV tables and comparison plots.
-
-Two experiments are included — each is a fully self-contained script.
+Automated benchmark that runs vision LLMs on a fixed image set, detecting people (gender/age), backpacks, and bicycles. Tests local models via [Ollama](https://ollama.com) and cloud models via the [Anthropic API](https://docs.anthropic.com/). Results are scored against manual ground truth and saved per-run with CSV tables and comparison plots.
 
 ---
 
-## Hardware Configuration
+## Results
+
+### Overall weighted accuracy score
+
+People count contributes 50% of the score. Gender, children, backpack, and bicycle each contribute 10%.
+
+![Overall scores](scores_overall.png)
+
+### Score breakdown by metric
+
+![Scores by metric](scores_by_metric.png)
+
+### Per-image predictions — Experiment 2 (qwen3-vl + llama3.2-vision)
+
+![Per-image comparison exp2](runs/2026-03-31_14-46-36/results_per_image.png)
+
+### Per-image predictions — Experiment 1 (broad survey)
+
+![Per-image comparison exp1](runs/2026-03-31_10-52-52/results_per_image.png)
+
+---
+
+## Hardware
 
 | Component | Spec |
 |---|---|
@@ -37,11 +57,9 @@ Wide comparison across 6 model families tested at q4, q8, and fp16 quantizations
 | `minicpm-v` | 8B | ✓ | ✓ | ✓ | MiniCPM-V 2.6 |
 | `moondream` | 1.8B | ✓ | ✓ | ✓ | Ultra-fast reference |
 
----
-
 ### Experiment 2 — Focused benchmark (`analyze_images.py`)
 
-Focused comparison of the best-performing / most promising models at q8 only. Includes a warm-up step so model load time is excluded from benchmark timings.
+Focused on the most promising models at q8 only. Includes a warm-up step so model load time is excluded from benchmark timings.
 
 | Family | Size | q8 | Notes |
 |---|---|---|---|
@@ -50,18 +68,17 @@ Focused comparison of the best-performing / most promising models at q8 only. In
 | `qwen3-vl` | 8B | ✓ | Qwen3 Vision-Language (bf16) |
 | `qwen3-vl` | 30B-A3B MoE | ✓ | 30B total / ~3B active; split across both GPUs |
 
-VRAM budget per quantization (approximate):
-- **q4_K_M** — 0.5 bytes/param
-- **q8_0** — 1 byte/param
-- **fp16/bf16** — 2 bytes/param (Qwen3-VL uses bfloat16)
+### Cloud models (`run_claude.py`)
 
-Models are skipped automatically at runtime if pull fails.
+| Model | Avg time/img | Overall score |
+|---|---|---|
+| claude-sonnet-4-6 | 15.1s | 85.6 |
+| claude-opus-4-6 | 4.2s | 84.8 |
+| claude-haiku-4-5 | 1.8s | 80.4 |
 
 ---
 
 ## What It Detects
-
-For every image the models answer:
 
 | Field | Type | Description |
 |---|---|---|
@@ -75,23 +92,41 @@ For every image the models answer:
 
 ---
 
+## Scoring
+
+Predictions are compared to `ground_truth.csv` (manual labels for all images):
+
+| Metric | Weight | Method |
+|---|---|---|
+| People count | 50% | `max(0, 1 - \|pred-truth\| / truth)` |
+| Males | 10% | same closeness score |
+| Females | 10% | same closeness score |
+| Children | 10% | same closeness score |
+| Backpack count | 10% | same closeness score |
+| Bicycle present | 10% | exact boolean match |
+
+---
+
 ## Project Structure
 
 ```
-testllms/
-├── analyze_images.py           # Experiment 2 (current / recommended)
-├── analyze_images_exp1.py      # Experiment 1 (broad survey)
-├── images/                     # input images (JPG/PNG)
-├── models/
-│   └── ollama/                 # downloaded model weights
+vision-llm-benchmark/
+├── analyze_images.py           # Experiment 2 — local models (current)
+├── analyze_images_exp1.py      # Experiment 1 — broad local survey
+├── run_claude.py               # Cloud benchmark via Anthropic API
+├── score_models.py             # Score all runs vs ground truth + plots
+├── ground_truth.csv            # Manual labels for all test images
+├── scores_summary.csv          # Per-model weighted scores
+├── scores_overall.png          # Bar chart: overall score all models
+├── scores_by_metric.png        # Bar charts: score per metric all models
+├── images/                     # Input images (JPG/PNG) — not committed
+├── models/ollama/              # Model weights — not committed
 └── runs/
-    └── YYYY-MM-DD_HH-MM-SS/
-        ├── results.csv             # clean per-(model, quant, image) table
-        ├── results_raw.csv         # raw JSON responses
-        ├── benchmark.csv           # total & avg inference time per variant
-        ├── results_<family>.png    # per-model: images × quant levels
-        ├── results_per_image.png   # per-image: all models side by side
-        └── results_comparison.png  # summary bar charts
+    ├── 2026-03-31_10-52-52/    # Experiment 1 results
+    ├── 2026-03-31_14-46-36/    # Experiment 2 results
+    ├── claude_haiku/
+    ├── claude_sonnet/
+    └── claude_opus/
 ```
 
 ---
@@ -99,68 +134,38 @@ testllms/
 ## Usage
 
 ```bash
-# Experiment 2 — recommended starting point
+# Local benchmark — Experiment 2 (recommended)
 python3 analyze_images.py
 
-# Experiment 1 — broad survey across more models and quant levels
+# Local benchmark — Experiment 1 (broad survey)
 python3 analyze_images_exp1.py
+
+# Cloud benchmark (requires ANTHROPIC_API_KEY)
+export ANTHROPIC_API_KEY=sk-ant-...
+python3 run_claude.py --model haiku    # claude-haiku-4-5
+python3 run_claude.py --model sonnet   # claude-sonnet-4-6
+python3 run_claude.py --model opus     # claude-opus-4-6
+
+# Score all runs and regenerate plots
+python3 score_models.py
 
 # Custom GPU power limits (watts, GPU 0 then GPU 1)
 python3 analyze_images.py --gpu-power 280 170
-
-# Skip power limiting
 python3 analyze_images.py --no-power-limit
 ```
 
 ### Requirements
 
 ```bash
-pip install requests pandas matplotlib pillow
+pip install requests pandas matplotlib pillow anthropic
 ```
 
 Ollama is started automatically if not already running. Models are pulled on first use.
 
 ---
 
-## Output Plots
+## Planned: Ground Truth Expansion
 
-### `results_<family>.png` — Per-model quantization comparison
-One plot per model family. Rows = images, columns = quant levels side by side. Shows how quantization affects accuracy for the same model.
-
-### `results_per_image.png` — Cross-model comparison
-One row per image, one column per model (best available quantization). Easiest way to compare how different models see the same scene.
-
-### `results_comparison.png` — Summary bar charts
-Aggregated metrics across all models: avg people detected, avg inference time, backpack detections, bicycle detections, and total benchmark time.
-
----
-
-## Planned: Manual Ground Truth Evaluation
-
-A manual classification of each sample image will be added to allow precision/recall scoring per model and quantization level.
-
-Planned metrics:
-- **People count accuracy** — absolute error vs ground truth
-- **Gender classification accuracy** — per-person correct/incorrect
-- **Backpack detection** — precision / recall
-- **Bicycle detection** — precision / recall
-- **Speed vs accuracy trade-off** — plot per model family
-
-Ground truth file format (to be added): `ground_truth.csv`
-
-```
-image,total_people,males,females,children,people_with_backpack,bicycle_present
-IMAG0019.JPG,6,4,2,0,1,False
-...
-```
-
----
-
-## Notes
-
-- Images are resized to max 1024px on the longest side before inference to avoid timeouts
-- All models use `temperature=0` for deterministic outputs
-- `format: json` is passed to Ollama to enforce structured output
-- Each run is saved in a timestamped folder — old runs are never overwritten
-- The `~/.ollama/models` symlink points to `models/ollama/` on this drive to avoid filling the system disk
-- Warm-up requests (1×1 pixel image) are sent before each model's benchmark loop — load time is logged separately and excluded from per-image timings
+- Precision/recall curves per model across quantization levels
+- Speed vs accuracy scatter plot
+- More images for statistical significance
