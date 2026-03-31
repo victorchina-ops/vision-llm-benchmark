@@ -1,6 +1,8 @@
-# Multimodal LLM Image Analysis
+# Multimodal LLM Image Analysis Benchmark
 
-Automated benchmark that runs multiple vision LLMs via [Ollama](https://ollama.com) on a set of images, detecting people (gender/age), backpacks, and bicycles. Each model is tested at multiple quantization levels (q4, q8, fp16) and results are saved per-run with CSV tables and comparison plots.
+Automated benchmark that runs vision LLMs via [Ollama](https://ollama.com) on a set of images, detecting people (gender/age), backpacks, and bicycles. Results are saved per-run in timestamped folders with CSV tables and comparison plots.
+
+Two experiments are included — each is a fully self-contained script.
 
 ---
 
@@ -16,11 +18,15 @@ Automated benchmark that runs multiple vision LLMs via [Ollama](https://ollama.c
 | OS | Linux (Ubuntu) |
 | Driver | 570.211.01 |
 
-The RTX 3090 is capped at **250W** by default (down from 350W) since LLM inference is memory-bandwidth bound. This reduces heat and power draw with minimal speed impact. Override with `--gpu-power`.
+The RTX 3090 is capped at **250W** by default (down from 350W) since LLM inference is memory-bandwidth bound. Override with `--gpu-power`.
 
 ---
 
-## Models Tested
+## Experiments
+
+### Experiment 1 — Broad model survey (`analyze_images_exp1.py`)
+
+Wide comparison across 6 model families tested at q4, q8, and fp16 quantizations.
 
 | Family | Sizes | q4 | q8 | fp16 | Notes |
 |---|---|---|---|---|---|
@@ -31,12 +37,25 @@ The RTX 3090 is capped at **250W** by default (down from 350W) since LLM inferen
 | `minicpm-v` | 8B | ✓ | ✓ | ✓ | MiniCPM-V 2.6 |
 | `moondream` | 1.8B | ✓ | ✓ | ✓ | Ultra-fast reference |
 
-VRAM budget per quantization (approximate):
-- **q4_K_M** — 0.5 bytes/param (best quality-per-GB)
-- **q8_0** — 1 byte/param
-- **fp16** — 2 bytes/param (full precision)
+---
 
-Models exceeding 36 GB are skipped automatically. The 90B LLaMA variant is commented out (requires RAM offload, very slow).
+### Experiment 2 — Focused benchmark (`analyze_images.py`)
+
+Focused comparison of the best-performing / most promising models at q8 only. Includes a warm-up step so model load time is excluded from benchmark timings.
+
+| Family | Size | q8 | Notes |
+|---|---|---|---|
+| `llama3.2-vision` | 11B | ✓ | Meta LLaMA 3.2 Vision |
+| `qwen3-vl` | 4B | ✓ | Qwen3 Vision-Language (bf16) |
+| `qwen3-vl` | 8B | ✓ | Qwen3 Vision-Language (bf16) |
+| `qwen3-vl` | 30B-A3B MoE | ✓ | 30B total / ~3B active; split across both GPUs |
+
+VRAM budget per quantization (approximate):
+- **q4_K_M** — 0.5 bytes/param
+- **q8_0** — 1 byte/param
+- **fp16/bf16** — 2 bytes/param (Qwen3-VL uses bfloat16)
+
+Models are skipped automatically at runtime if pull fails.
 
 ---
 
@@ -52,7 +71,7 @@ For every image the models answer:
 | `children` | integer | Persons appearing under ~16 years old |
 | `people_with_backpack` | integer | Persons with a clearly visible backpack |
 | `bicycle_present` | boolean | Any bicycle visible (including parked) |
-| `elapsed_sec` | float | Inference time for that image |
+| `elapsed_sec` | float | Inference time for that image (excludes load time) |
 
 ---
 
@@ -60,17 +79,18 @@ For every image the models answer:
 
 ```
 testllms/
-├── analyze_images.py       # main script
-├── images/                 # input images (JPG/PNG)
+├── analyze_images.py           # Experiment 2 (current / recommended)
+├── analyze_images_exp1.py      # Experiment 1 (broad survey)
+├── images/                     # input images (JPG/PNG)
 ├── models/
-│   └── ollama/             # downloaded model weights (~150 GB)
+│   └── ollama/                 # downloaded model weights
 └── runs/
     └── YYYY-MM-DD_HH-MM-SS/
-        ├── results.csv         # clean per-(model, quant, image) table
-        ├── results_raw.csv     # raw JSON responses
-        ├── benchmark.csv       # total & avg inference time per variant
-        ├── results_<family>.png     # per-model: images × quant levels
-        ├── results_per_image.png    # per-image: all models side by side
+        ├── results.csv             # clean per-(model, quant, image) table
+        ├── results_raw.csv         # raw JSON responses
+        ├── benchmark.csv           # total & avg inference time per variant
+        ├── results_<family>.png    # per-model: images × quant levels
+        ├── results_per_image.png   # per-image: all models side by side
         └── results_comparison.png  # summary bar charts
 ```
 
@@ -79,10 +99,13 @@ testllms/
 ## Usage
 
 ```bash
-# Standard run (starts ollama automatically, sets 3090=250W, 3060=170W)
+# Experiment 2 — recommended starting point
 python3 analyze_images.py
 
-# Custom power limits (watts, GPU 0 then GPU 1)
+# Experiment 1 — broad survey across more models and quant levels
+python3 analyze_images_exp1.py
+
+# Custom GPU power limits (watts, GPU 0 then GPU 1)
 python3 analyze_images.py --gpu-power 280 170
 
 # Skip power limiting
@@ -102,7 +125,7 @@ Ollama is started automatically if not already running. Models are pulled on fir
 ## Output Plots
 
 ### `results_<family>.png` — Per-model quantization comparison
-One plot per model family. Rows = images, columns = Q4 / Q8 / FP16 side by side. Lets you see how quantization affects accuracy for the same model.
+One plot per model family. Rows = images, columns = quant levels side by side. Shows how quantization affects accuracy for the same model.
 
 ### `results_per_image.png` — Cross-model comparison
 One row per image, one column per model (best available quantization). Easiest way to compare how different models see the same scene.
@@ -121,7 +144,7 @@ Planned metrics:
 - **Gender classification accuracy** — per-person correct/incorrect
 - **Backpack detection** — precision / recall
 - **Bicycle detection** — precision / recall
-- **Speed vs accuracy trade-off** — plot per model family across quant levels
+- **Speed vs accuracy trade-off** — plot per model family
 
 Ground truth file format (to be added): `ground_truth.csv`
 
@@ -139,4 +162,5 @@ IMAG0019.JPG,6,4,2,0,1,False
 - All models use `temperature=0` for deterministic outputs
 - `format: json` is passed to Ollama to enforce structured output
 - Each run is saved in a timestamped folder — old runs are never overwritten
-- The `~/.ollama/models` symlink points to `models/ollama/` on this drive (7.3 TB) to avoid filling the system disk
+- The `~/.ollama/models` symlink points to `models/ollama/` on this drive to avoid filling the system disk
+- Warm-up requests (1×1 pixel image) are sent before each model's benchmark loop — load time is logged separately and excluded from per-image timings

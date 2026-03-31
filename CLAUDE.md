@@ -2,11 +2,25 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Running the Script
+## Scripts
+
+There are two experiment scripts — both are fully self-contained (no shared modules):
+
+| Script | Purpose |
+|---|---|
+| `analyze_images.py` | **Experiment 2** — current/recommended. 4 models at q8 only, with warm-up. |
+| `analyze_images_exp1.py` | **Experiment 1** — broad survey. 6 model families at q4/q8/fp16. |
+
+Both scripts share identical infrastructure (helpers, plotting, main loop). The only differences are `MODEL_VARIANTS` and the docstring.
+
+## Running
 
 ```bash
-# Standard run — starts ollama if needed, sets GPU power limits, pulls missing models
+# Experiment 2 (current)
 python3 analyze_images.py
+
+# Experiment 1 (broad survey)
+python3 analyze_images_exp1.py
 
 # Custom GPU power limits (GPU 0 then GPU 1, in watts)
 python3 analyze_images.py --gpu-power 280 170
@@ -32,32 +46,34 @@ OLLAMA_MODELS=/media/victor-rina/int_pixbackup/testllms/models/ollama ollama ser
 
 ## Architecture
 
-The entire project is a single script: `analyze_images.py`. There are no modules, packages, or tests.
-
 **Key data structure:** `MODEL_VARIANTS` — a list of `(family, quant, ollama_tag, vram_gb)` tuples. This is the only place to add/remove/disable models. Entries that fail to pull are skipped gracefully; the rest of the run continues.
 
-**Flow:**
+**Flow (both scripts):**
 1. `argparse` → parse `--gpu-power` / `--no-power-limit`
 2. `set_gpu_power_limits()` → `sudo nvidia-smi -pl`
 3. `ensure_ollama_running()` → HTTP check → `subprocess.Popen("ollama serve")` if needed
 4. Pull loop → `pull_model()` per variant → builds `available[]` list of working variants
-5. Analysis loop → `analyze_image()` per (variant, image) → `make_row()` → appends to `rows[]`
-6. Save `runs/YYYY-MM-DD_HH-MM-SS/results.csv`, `results_raw.csv`, `benchmark.csv`
-7. Three plot functions → saved to the same run folder
+5. Analysis loop → for each variant: `warmup_model()` (excluded from timing) → `analyze_image()` per image → `make_row()` → appends to `rows[]`
+6. Incremental save: CSVs written after every variant; per-model plot saved as soon as all quants for that family complete
+7. Final cross-model plots at end of run
 
 **Plotting functions:**
-- `plot_model_quants()` — one PNG per model family; rows=images, cols=q4/q8/f16
+- `plot_model_quants()` — one PNG per model family; rows=images, cols=quant levels
 - `plot_per_image_comparison()` — one PNG; rows=images, cols=models (best quant each)
 - `plot_comparison()` — summary bar charts using best quant per model family
 
-**`cell_text()`** is the single source of truth for what text appears in every stats cell across all plots. Edit here to change display format globally.
+**`cell_text()`** is the single source of truth for what text appears in every stats cell across all plots.
+
+**`warmup_model()`** sends a 1×1 pixel image to force GPU loading before the benchmark loop. Timeout: 450 s. Errors are non-fatal.
 
 ## Adding or Changing Models
 
-Edit `MODEL_VARIANTS` in the config section. Check exact ollama tag names at `https://ollama.com/library/<model>/tags` — tag naming is inconsistent across models (e.g. `gemma3:12b-it-q4_K_M` vs `qwen2.5vl:7b-q4_K_M`). Use the scraping one-liner to verify:
+Edit `MODEL_VARIANTS` in the config section of the relevant script. Check exact ollama tag names — naming is inconsistent across models. Use this one-liner to verify:
 ```bash
-curl -s https://ollama.com/library/<model>/tags | python3 -c "import sys,re; [print(t) for t in sorted(set(re.findall(r'[a-zA-Z0-9._:-]*(?:q4|q8|f16|fp16)[a-zA-Z0-9._:-]*', sys.stdin.read())))[:20]]"
+curl -s https://ollama.com/library/<model>/tags | python3 -c "import sys,re; [print(t) for t in sorted(set(re.findall(r'[a-zA-Z0-9._:-]*(?:q4|q8|f16|fp16|bf16)[a-zA-Z0-9._:-]*', sys.stdin.read())))[:20]]"
 ```
+
+Note: Qwen3-VL uses `bf16` tags (not `fp16`). Both are 2 bytes/param and labelled `f16` in plots.
 
 ## Planned Work
 

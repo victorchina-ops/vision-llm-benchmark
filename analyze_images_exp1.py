@@ -1,18 +1,16 @@
 """
-Experiment 2 — Focused benchmark: Qwen3-VL vs LLaMA 3.2 Vision.
-Tests 4 model variants at q8 only (best quality that fits in 36 GB VRAM).
+Experiment 1 — Broad model survey.
+Tests 6 model families across q4 / q8 / fp16 quantizations.
 
-Models: llama3.2-vision-11b, qwen3-vl-4b, qwen3-vl-8b, qwen3-vl-30b-MoE
-Quantization: q8 only (fall back to q4 tag if a pull fails)
-
-Each model is warmed up before timing — load time is excluded from benchmark.
+Models: qwen2.5vl-3b, qwen2.5vl-7b, qwen2.5vl-32b, llava-13b, llava-34b,
+        gemma3-12b, llama3.2-vision-11b, minicpm-v-8b, moondream-1.8b
 
 Outputs (saved to runs/YYYY-MM-DD_HH-MM-SS/):
   results.csv            — every (model, quant, image) row
   benchmark.csv          — total / avg time per (model, quant)
   results_<model>.png    — per-model plot: images × quant levels side by side
-  results_per_image.png  — per-image plot: all models side by side
-  results_comparison.png — summary bar charts across models
+  results_per_image.png  — per-image plot: all models (best quant) as columns
+  results_comparison.png — summary bar charts across models (best quant each)
 
 Requirements:
     pip install requests pandas matplotlib pillow
@@ -42,30 +40,54 @@ OLLAMA_URL  = "http://localhost:11434"
 # Each entry: (family_label, quant_label, ollama_tag, vram_gb_estimate)
 #
 # VRAM budget: RTX 3090 (24 GB) + RTX 3060 (12 GB) = 36 GB pooled.
-# f16/bf16 = full 16-bit weights (~2 bytes/param).  q8 = ~1 byte/param.  q4 = ~0.5 byte/param.
+# fp16 = full 16-bit weights (~2 bytes/param).  q8 = ~1 byte/param.  q4 = ~0.5 byte/param.
 # q4_K_M is preferred over plain q4_0 — better quality at same size.
 # Models are skipped automatically at runtime if pull fails (tag not found / OOM).
-#
-# NOTE: Qwen3-VL uses bf16 (bfloat16) instead of fp16 — same VRAM cost (2 bytes/param),
-#       different floating-point format. Both are labelled "f16" in plots for consistency.
-# NOTE: Ministral/Mistral text models are excluded — they have no vision capability.
-#       Use pixtral:12b if you want a multimodal Mistral model.
 MODEL_VARIANTS: list[tuple[str, str, str, float]] = [
-    # Running q8 only — best quality that fits within 36 GB for all models.
-    # Fall back to q4 tag if a q8 pull fails (edit the tag below).
+    # ── Qwen2.5-VL 7B ─────────────────────────────────────────────────────────
+    ("qwen2.5vl-7b",  "q4",  "qwen2.5vl:7b-q4_K_M",  6.0),
+    ("qwen2.5vl-7b",  "q8",  "qwen2.5vl:7b-q8_0",    9.4),
+    ("qwen2.5vl-7b",  "f16", "qwen2.5vl:7b-fp16",    15.0),
 
-    # ── Meta LLaMA 3.2 Vision 11B — 12 GB @ q8 ───────────────────────────────
-    ("llama3v-11b",  "q8", "llama3.2-vision:11b-instruct-q8_0",       12.0),
+    # ── Qwen2.5-VL 3B (small/fast reference) ─────────────────────────────────
+    ("qwen2.5vl-3b",  "q4",  "qwen2.5vl:3b-q4_K_M",  2.5),
+    ("qwen2.5vl-3b",  "q8",  "qwen2.5vl:3b-q8_0",    4.0),
+    ("qwen2.5vl-3b",  "f16", "qwen2.5vl:3b-fp16",    7.0),
 
-    # ── Qwen3-VL 4B — 5 GB @ q8 ──────────────────────────────────────────────
-    ("qwen3vl-4b",   "q8", "qwen3-vl:4b-instruct-q8_0",                5.0),
+    # ── LLaVA 13B v1.6 ────────────────────────────────────────────────────────
+    ("llava-13b",     "q4",  "llava:13b-v1.6-vicuna-q4_K_M",  8.0),
+    ("llava-13b",     "q8",  "llava:13b-v1.6-vicuna-q8_0",   16.0),
+    ("llava-13b",     "f16", "llava:13b-v1.6-vicuna-fp16",   26.0),
 
-    # ── Qwen3-VL 8B — 10 GB @ q8 ─────────────────────────────────────────────
-    ("qwen3vl-8b",   "q8", "qwen3-vl:8b-instruct-q8_0",               10.0),
+    # ── Qwen2.5-VL 32B ────────────────────────────────────────────────────────
+    ("qwen2.5vl-32b", "q4",  "qwen2.5vl:32b-q4_K_M", 18.0),
+    ("qwen2.5vl-32b", "q8",  "qwen2.5vl:32b-q8_0",   34.0),
+    # f16 ~64 GB — exceeds budget, skipped
 
-    # ── Qwen3-VL 30B-A3B MoE — 30 GB @ q8 (split across both GPUs) ──────────
-    # 30B total params, ~3B active at inference — fast despite large weight file.
-    ("qwen3vl-30b",  "q8", "qwen3-vl:30b-a3b-instruct-q8_0",          30.0),
+    # ── LLaVA 34B v1.6 ────────────────────────────────────────────────────────
+    ("llava-34b",     "q4",  "llava:34b-v1.6-q4_K_M", 19.0),
+    ("llava-34b",     "q8",  "llava:34b-v1.6-q8_0",   34.0),
+    # f16 ~68 GB — exceeds budget, skipped
+
+    # ── Gemma 3 12B ───────────────────────────────────────────────────────────
+    ("gemma3-12b",    "q4",  "gemma3:12b-it-q4_K_M",  8.0),
+    ("gemma3-12b",    "q8",  "gemma3:12b-it-q8_0",   16.0),
+    ("gemma3-12b",    "f16", "gemma3:12b-it-fp16",   24.0),
+
+    # ── Meta LLaMA 3.2 Vision 11B ─────────────────────────────────────────────
+    ("llama3v-11b",   "q4",  "llama3.2-vision:11b-instruct-q4_K_M",  8.0),
+    ("llama3v-11b",   "q8",  "llama3.2-vision:11b-instruct-q8_0",   12.0),
+    ("llama3v-11b",   "f16", "llama3.2-vision:11b-instruct-fp16",   22.0),
+
+    # ── MiniCPM-V 8B v2.6 ─────────────────────────────────────────────────────
+    ("minicpm-v-8b",  "q4",  "minicpm-v:8b-2.6-q4_K_M",  5.0),
+    ("minicpm-v-8b",  "q8",  "minicpm-v:8b-2.6-q8_0",    9.0),
+    ("minicpm-v-8b",  "f16", "minicpm-v:8b-2.6-fp16",    16.0),
+
+    # ── Moondream 1.8B v2 ─────────────────────────────────────────────────────
+    ("moondream",     "q4",  "moondream:1.8b-v2-q4_K_M",  1.5),
+    ("moondream",     "q8",  "moondream:1.8b-v2-q8_0",    3.0),
+    ("moondream",     "f16", "moondream:1.8b-v2-fp16",    6.0),
 ]
 
 PROMPT = """\
@@ -202,7 +224,6 @@ def analyze_image(tag: str, image_path: Path) -> tuple[dict | None, str, float]:
 def warmup_model(tag: str) -> None:
     """Send a tiny dummy request to force the model to load into GPU memory.
     This ensures the first real image timing is clean (no model-load overhead)."""
-    # 1x1 white pixel JPEG encoded as base64
     tiny = Image.new("RGB", (1, 1), color=(255, 255, 255))
     buf = io.BytesIO()
     tiny.save(buf, format="JPEG")
@@ -262,7 +283,6 @@ def cell_text(r: pd.Series | None) -> tuple[str, str, str]:
 
 
 # ── Plot 1: per-model quantization comparison ─────────────────────────────────
-# Rows = images, Cols = [ref image] + [q4 stats] + [q8 stats] + [f16 stats]
 
 def plot_model_quants(family: str, quants_available: list[str],
                       df: pd.DataFrame, images: list[Path],
@@ -324,7 +344,6 @@ def plot_model_quants(family: str, quants_available: list[str],
 
 def plot_per_image_comparison(df: pd.DataFrame, images: list[Path],
                                families: list[str], out_dir: Path) -> None:
-    # For each family pick highest available quant in QUANT_ORDER
     best: dict[str, str] = {}
     for fam in families:
         for q in reversed(QUANT_ORDER):
@@ -388,7 +407,6 @@ def plot_per_image_comparison(df: pd.DataFrame, images: list[Path],
 
 def plot_comparison(df: pd.DataFrame, benchmark: dict,
                     families: list[str], out_dir: Path) -> None:
-    # pick best quant per family
     best_rows = []
     for fam in families:
         for q in reversed(QUANT_ORDER):
@@ -425,7 +443,6 @@ def plot_comparison(df: pd.DataFrame, benchmark: dict,
             ax.text(j, v + 0.01 * max(vals.values, default=1),
                     f"{v:.1f}", ha="center", va="bottom", fontsize=7)
 
-    # benchmark panel
     ax_b   = axes[4]
     labels, totals, avgs = [], [], []
     for fam in families:
@@ -457,7 +474,7 @@ def plot_comparison(df: pd.DataFrame, benchmark: dict,
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Multimodal LLM image analysis")
+    parser = argparse.ArgumentParser(description="Multimodal LLM image analysis — Experiment 1")
     parser.add_argument(
         "--gpu-power", type=int, nargs="+", metavar="W",
         default=[250, 170],
@@ -469,14 +486,12 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    # ── Set GPU power limits ──────────────────────────────────────────────────
     if not args.no_power_limit:
         print("=== Setting GPU power limits ===")
         limits = list(enumerate(args.gpu_power))
         set_gpu_power_limits(limits)
         print()
 
-    # ── Ensure ollama is running ──────────────────────────────────────────────
     print("=== Checking ollama ===")
     ensure_ollama_running()
     print()
@@ -487,15 +502,13 @@ def main() -> None:
         sys.exit(f"No images found in {IMAGES_DIR}/")
     print(f"Found {len(images)} image(s) in {IMAGES_DIR}/\n")
 
-    # ── Create timestamped output folder ─────────────────────────────────────
     run_ts  = time.strftime("%Y-%m-%d_%H-%M-%S")
     out_dir = RUNS_DIR / run_ts
     out_dir.mkdir(parents=True, exist_ok=True)
     print(f"Output folder: {out_dir}\n")
 
-    # ── 1. Pull all variants ──────────────────────────────────────────────────
     print("=== Pulling models ===")
-    available: list[tuple[str, str, str]] = []   # (family, quant, tag) that pulled OK
+    available: list[tuple[str, str, str]] = []
     for family, quant, tag, _vram in MODEL_VARIANTS:
         if pull_model(tag):
             available.append((family, quant, tag))
@@ -504,16 +517,14 @@ def main() -> None:
     if not available:
         sys.exit("No models available.")
 
-    # ── 2. Analyse ────────────────────────────────────────────────────────────
     print("=== Analysing images ===")
     rows      = []
-    benchmark = {}   # (family, quant) → {total_sec, avg_sec, errors}
+    benchmark = {}
 
-    # pre-compute which quant variants exist per family so we know when one is complete
     family_quants = {}
     for f, q, _ in available:
         family_quants.setdefault(f, []).append(q)
-    families_done = []   # families fully processed so far
+    families_done = []
 
     clean_cols = ["family", "quant", "model_tag", "image", "total_people", "males",
                   "females", "children", "people_with_backpack", "bicycle_present",
@@ -557,10 +568,8 @@ def main() -> None:
         }
         print(f"  ── total: {total:.1f}s  avg/img: {total/len(images):.1f}s  errors: {errors}")
 
-        # save CSVs incrementally after every variant
         save_csvs(rows, benchmark)
 
-        # if all quants for this family are done, generate its plot immediately
         quants_done = [q for (f, q) in benchmark if f == family]
         if set(quants_done) >= set(family_quants[family]):
             df_so_far = pd.DataFrame(rows)
@@ -569,7 +578,6 @@ def main() -> None:
             plot_model_quants(family, quants_ordered, df_so_far, images, out_dir)
             families_done.append(family)
 
-    # ── 3. Final CSVs + summary ───────────────────────────────────────────────
     df = pd.DataFrame(rows)
     save_csvs(rows, benchmark)
     print(f"\nSaved CSV: {out_dir / 'results.csv'}")
@@ -580,13 +588,8 @@ def main() -> None:
     print("\n=== Benchmark Summary ===")
     print(bdf.to_string(index=False))
 
-    # ── 4. Final cross-model plots ────────────────────────────────────────────
     print("\n=== Generating final plots ===")
-
-    # Plot B: per-image, cols = one model each (best quant)
     plot_per_image_comparison(df, images, families_done, out_dir)
-
-    # Plot C: summary bar charts
     plot_comparison(df, benchmark, families_done, out_dir)
 
     print("\nDone.")
