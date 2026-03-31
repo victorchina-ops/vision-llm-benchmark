@@ -1,0 +1,12 @@
+family,quant,model_tag,image,total_people,males,females,children,people_with_backpack,bicycle_present,elapsed_sec,parse_error
+claude-opus,api,claude-opus-4-6,IMAG0019.JPG,8,5,2,1,0,False,3.6,False
+claude-opus,api,claude-opus-4-6,IMAG0026.JPG,4,0,4,0,0,False,3.1,False
+claude-opus,api,claude-opus-4-6,IMAG0027 (1).JPG,4,4,0,0,2,False,3.5,False
+claude-opus,api,claude-opus-4-6,IMAG0068 (1).JPG,1,1,0,0,1,False,3.1,False
+claude-opus,api,claude-opus-4-6,IMAG0197.JPG,5,4,1,0,1,False,3.7,False
+claude-opus,api,claude-opus-4-6,IMAG0360.JPG,18,10,7,1,4,False,5.3,False
+claude-opus,api,claude-opus-4-6,IMAG0370.JPG,2,1,1,0,0,True,3.0,False
+claude-opus,api,claude-opus-4-6,IMAG0471.JPG,2,2,0,0,1,False,4.2,False
+claude-opus,api,claude-opus-4-6,IMAG1703.JPG,7,0,0,7,5,False,4.0,False
+claude-opus,api,claude-opus-4-6,IMAG2059.JPG,13,6,6,1,4,False,4.6,False
+claude-opus,api,claude-opus-4-6,IMAG2095.JPG,6,3,1,2,2,False,3.8,False

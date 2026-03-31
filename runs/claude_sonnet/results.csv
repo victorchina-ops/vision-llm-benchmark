@@ -1,0 +1,12 @@
+family,quant,model_tag,image,total_people,males,females,children,people_with_backpack,bicycle_present,elapsed_sec,parse_error
+claude-sonnet,api,claude-sonnet-4-6,IMAG0019.JPG,7,4,3,0,0,False,35.4,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0026.JPG,4,0,4,0,2,False,32.4,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0027 (1).JPG,3,3,0,0,2,False,18.1,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0068 (1).JPG,1,1,0,0,1,False,5.7,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0197.JPG,5,4,1,0,1,False,19.2,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0360.JPG,13,8,5,0,6,False,9.9,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0370.JPG,2,1,1,0,0,True,9.4,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG0471.JPG,2,1,1,0,1,False,5.2,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG1703.JPG,6,2,0,4,5,False,5.4,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG2059.JPG,10,5,5,0,4,False,6.1,False
+claude-sonnet,api,claude-sonnet-4-6,IMAG2095.JPG,5,3,2,0,2,False,15.7,False

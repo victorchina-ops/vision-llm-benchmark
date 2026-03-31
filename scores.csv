@@ -2078,3 +2078,234 @@ exp2,qwen3vl-8b,q8,qwen3-vl:8b-instruct-q8_0,qwen3vl-8b/q8,IMAG2095.JPG,children
 exp2,qwen3vl-8b,q8,qwen3-vl:8b-instruct-q8_0,qwen3vl-8b/q8,IMAG2095.JPG,people_with_backpack,0.5,0.1,5.0
 exp2,qwen3vl-8b,q8,qwen3-vl:8b-instruct-q8_0,qwen3vl-8b/q8,IMAG2095.JPG,bicycle_present,1.0,0.1,10.0
 exp2,qwen3vl-8b,q8,qwen3-vl:8b-instruct-q8_0,qwen3vl-8b/q8,IMAG2095.JPG,TOTAL,0.95,1.0,95.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,total_people,0.8571,0.5,42.86
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,males,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,females,0.6,0.1,6.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,children,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,people_with_backpack,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,bicycle_present,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0019.JPG,TOTAL,0.5886,1.0,58.86
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,males,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,children,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,people_with_backpack,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0026.JPG,TOTAL,0.9,1.0,90.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,males,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,children,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,people_with_backpack,0.5,0.1,5.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0027 (1).JPG,TOTAL,0.95,1.0,95.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,males,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,children,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,people_with_backpack,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0068 (1).JPG,TOTAL,1.0,1.0,100.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,males,0.6667,0.1,6.67
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,children,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,people_with_backpack,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0197.JPG,TOTAL,0.8667,1.0,86.67
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,total_people,0.7059,0.5,35.29
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,males,0.6667,0.1,6.67
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,females,0.8,0.1,8.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,children,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,people_with_backpack,0.2857,0.1,2.86
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0360.JPG,TOTAL,0.7282,1.0,72.82
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,males,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,children,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,people_with_backpack,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0370.JPG,TOTAL,1.0,1.0,100.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,males,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,females,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,children,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,people_with_backpack,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG0471.JPG,TOTAL,0.6,1.0,60.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,total_people,0.8333,0.5,41.67
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,males,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,children,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,people_with_backpack,0.8333,0.1,8.33
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG1703.JPG,TOTAL,0.8,1.0,80.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,total_people,0.7143,0.5,35.71
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,males,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,females,0.5,0.1,5.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,children,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,people_with_backpack,0.3333,0.1,3.33
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2059.JPG,TOTAL,0.6405,1.0,64.05
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,total_people,1.0,0.5,50.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,males,0.75,0.1,7.5
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,females,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,children,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,people_with_backpack,0.0,0.1,0.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,bicycle_present,1.0,0.1,10.0
+claude-haiku,claude-haiku-4-5,api,claude-haiku-4-5-20251001,claude-haiku-4-5/api,IMAG2095.JPG,TOTAL,0.775,1.0,77.5
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,males,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,females,0.6,0.1,6.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,children,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,people_with_backpack,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0019.JPG,TOTAL,0.76,1.0,76.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,males,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,people_with_backpack,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0026.JPG,TOTAL,0.9,1.0,90.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,total_people,0.75,0.5,37.5
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,males,0.75,0.1,7.5
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,people_with_backpack,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0027 (1).JPG,TOTAL,0.85,1.0,85.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,males,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,people_with_backpack,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0068 (1).JPG,TOTAL,1.0,1.0,100.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,males,0.6667,0.1,6.67
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,children,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,people_with_backpack,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0197.JPG,TOTAL,0.8667,1.0,86.67
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,total_people,0.7647,0.5,38.24
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,males,0.6667,0.1,6.67
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,people_with_backpack,0.8571,0.1,8.57
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0360.JPG,TOTAL,0.8347,1.0,83.47
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,males,0.5,0.1,5.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,females,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,people_with_backpack,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0370.JPG,TOTAL,0.85,1.0,85.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,males,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,people_with_backpack,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG0471.JPG,TOTAL,1.0,1.0,100.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,males,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,females,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,children,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,people_with_backpack,0.8333,0.1,8.33
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG1703.JPG,TOTAL,0.7833,1.0,78.33
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,total_people,0.7143,0.5,35.71
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,males,0.75,0.1,7.5
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,females,0.5,0.1,5.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,people_with_backpack,0.6667,0.1,6.67
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2059.JPG,TOTAL,0.7488,1.0,74.88
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,total_people,1.0,0.5,50.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,males,0.75,0.1,7.5
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,females,0.0,0.1,0.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,children,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,people_with_backpack,0.5,0.1,5.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,bicycle_present,1.0,0.1,10.0
+claude-sonnet,claude-sonnet,api,claude-sonnet-4-6,claude-sonnet/api,IMAG2095.JPG,TOTAL,0.825,1.0,82.5
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,total_people,0.8571,0.5,42.86
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,males,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,females,0.4,0.1,4.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,children,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0019.JPG,TOTAL,0.7686,1.0,76.86
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,total_people,1.0,0.5,50.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,males,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,females,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,children,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0026.JPG,TOTAL,1.0,1.0,100.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,total_people,1.0,0.5,50.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,males,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,females,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,children,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0027 (1).JPG,TOTAL,1.0,1.0,100.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,total_people,1.0,0.5,50.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,males,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,females,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,children,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0068 (1).JPG,TOTAL,1.0,1.0,100.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,total_people,1.0,0.5,50.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,males,0.6667,0.1,6.67
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,females,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,children,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0197.JPG,TOTAL,0.8667,1.0,86.67
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,total_people,0.9412,0.5,47.06
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,males,0.8333,0.1,8.33
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,females,0.6,0.1,6.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,children,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,people_with_backpack,0.5714,0.1,5.71
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0360.JPG,TOTAL,0.7711,1.0,77.11
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,total_people,1.0,0.5,50.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,males,0.5,0.1,5.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,females,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,children,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0370.JPG,TOTAL,0.85,1.0,85.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,total_people,1.0,0.5,50.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,males,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,females,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,children,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,people_with_backpack,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG0471.JPG,TOTAL,0.8,1.0,80.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,total_people,0.8333,0.5,41.67
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,males,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,females,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,children,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,people_with_backpack,0.8333,0.1,8.33
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG1703.JPG,TOTAL,0.8,1.0,80.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,total_people,0.9286,0.5,46.43
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,males,0.5,0.1,5.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,females,0.6,0.1,6.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,children,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,people_with_backpack,0.6667,0.1,6.67
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2059.JPG,TOTAL,0.741,1.0,74.1
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,total_people,0.8,0.5,40.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,males,0.75,0.1,7.5
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,females,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,children,0.0,0.1,0.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,people_with_backpack,0.5,0.1,5.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,bicycle_present,1.0,0.1,10.0
+claude-opus,claude-opus,api,claude-opus-4-6,claude-opus/api,IMAG2095.JPG,TOTAL,0.725,1.0,72.5
