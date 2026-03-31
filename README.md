@@ -16,14 +16,6 @@ People count contributes 50% of the score. Gender, children, backpack, and bicyc
 
 ![Scores by metric](scores_by_metric.png)
 
-### Per-image predictions — Experiment 2 (qwen3-vl + llama3.2-vision)
-
-![Per-image comparison exp2](runs/2026-03-31_14-46-36/results_per_image.png)
-
-### Per-image predictions — Experiment 1 (broad survey)
-
-![Per-image comparison exp1](runs/2026-03-31_10-52-52/results_per_image.png)
-
 ---
 
 ## Hardware
