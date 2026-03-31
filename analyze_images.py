@@ -510,6 +510,25 @@ def main() -> None:
     rows      = []
     benchmark = {}   # (family, quant) → {total_sec, avg_sec, errors}
 
+    # pre-compute which quant variants exist per family so we know when one is complete
+    family_quants = {}
+    for f, q, _ in available:
+        family_quants.setdefault(f, []).append(q)
+    families_done = []   # families fully processed so far
+
+    clean_cols = ["family", "quant", "model_tag", "image", "total_people", "males",
+                  "females", "children", "people_with_backpack", "bicycle_present",
+                  "elapsed_sec", "parse_error"]
+
+    def save_csvs(rows: list, benchmark: dict) -> None:
+        df = pd.DataFrame(rows)
+        df[clean_cols].to_csv(out_dir / "results.csv", index=False)
+        df[["family", "quant", "model_tag", "image", "raw_response"]].to_csv(
+            out_dir / "results_raw.csv", index=False
+        )
+        bdf = pd.DataFrame([{"family": f, "quant": q, **v} for (f, q), v in benchmark.items()])
+        bdf.to_csv(out_dir / "benchmark.csv", index=False)
+
     for family, quant, tag in available:
         print(f"\n[{family} / {quant.upper()}]  ({tag})")
         t0     = time.time()
@@ -538,37 +557,31 @@ def main() -> None:
         }
         print(f"  ── total: {total:.1f}s  avg/img: {total/len(images):.1f}s  errors: {errors}")
 
-    # ── 3. Save CSVs ──────────────────────────────────────────────────────────
+        # save CSVs incrementally after every variant
+        save_csvs(rows, benchmark)
+
+        # if all quants for this family are done, generate its plot immediately
+        quants_done = [q for (f, q) in benchmark if f == family]
+        if set(quants_done) >= set(family_quants[family]):
+            df_so_far = pd.DataFrame(rows)
+            quants_ordered = [q for q in QUANT_ORDER if q in quants_done]
+            print(f"\n  → Saving plot for {family} …")
+            plot_model_quants(family, quants_ordered, df_so_far, images, out_dir)
+            families_done.append(family)
+
+    # ── 3. Final CSVs + summary ───────────────────────────────────────────────
     df = pd.DataFrame(rows)
-    clean_cols = ["family", "quant", "model_tag", "image", "total_people", "males",
-                  "females", "children", "people_with_backpack", "bicycle_present",
-                  "elapsed_sec", "parse_error"]
-    df[clean_cols].to_csv(out_dir / "results.csv", index=False)
+    save_csvs(rows, benchmark)
     print(f"\nSaved CSV: {out_dir / 'results.csv'}")
-
-    # raw responses in a separate file to keep results.csv clean
-    df[["family", "quant", "model_tag", "image", "raw_response"]].to_csv(
-        out_dir / "results_raw.csv", index=False
-    )
     print(f"Saved CSV: {out_dir / 'results_raw.csv'}")
-
-    bdf = pd.DataFrame([
-        {"family": f, "quant": q, **v} for (f, q), v in benchmark.items()
-    ])
-    bdf.to_csv(out_dir / "benchmark.csv", index=False)
     print(f"Saved CSV: {out_dir / 'benchmark.csv'}")
+
+    bdf = pd.DataFrame([{"family": f, "quant": q, **v} for (f, q), v in benchmark.items()])
     print("\n=== Benchmark Summary ===")
     print(bdf.to_string(index=False))
 
-    # ── 4. Plots ──────────────────────────────────────────────────────────────
-    print("\n=== Generating plots ===")
-    families_done = list(dict.fromkeys(f for f, _, _ in available))  # ordered unique
-
-    # Plot A: per-model, rows=images, cols=quant levels
-    for fam in families_done:
-        quants = [q for f, q, _ in available if f == fam]
-        quants_ordered = [q for q in QUANT_ORDER if q in quants]
-        plot_model_quants(fam, quants_ordered, df, images, out_dir)
+    # ── 4. Final cross-model plots ────────────────────────────────────────────
+    print("\n=== Generating final plots ===")
 
     # Plot B: per-image, cols = one model each (best quant)
     plot_per_image_comparison(df, images, families_done, out_dir)
